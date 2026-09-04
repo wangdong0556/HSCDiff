@@ -1,0 +1,53 @@
+experiment:
+  name: hscd_mpi3dhp
+  output_dir: runs/hscd_mpi3dhp
+  seed: 1                # implementation choice; original run seed is not reported
+
+data:
+  dataset: MPI-INF-3DHP
+  train_file: data/mpi3dhp_train.npz
+  valid_file: data/mpi3dhp_test.npz
+  input_frames: 81
+  num_joints: 17
+  input_dim: 2
+  output_dim: 3
+  detector: ground_truth_2d
+  root_relative: true
+  metric_scale: 1000.0
+  metrics: [MPJPE, PCK, AUC]
+  pck_threshold_mm: 150.0
+  auc_max_threshold_mm: 150.0
+  num_workers: 4
+
+model:
+  name: HSCD
+  feature_dim: 256
+  mie_layers: 6
+  attention_heads: 4
+  attention_head_dim: 64
+  ffn_ratio: 2.0
+  dropout: 0.0
+  decoder_channels: [64, 96, 128, 160]  # exact widths are not reported
+  decoder_blocks_per_scale: 1
+  temporal_scales: 4
+
+diffusion:
+  training_noise_levels: 1000
+  beta_schedule: linear
+  beta_start: 0.0001
+  beta_end: 0.02
+  prediction_target: noise
+  reverse_steps: 50
+  clip_x0: null
+
+training:
+  optimizer: AdamW
+  epochs: 120
+  batch_size: 32
+  learning_rate: 0.0005
+  weight_decay: null
+  lr_decay: 0.99
+  eval_every: 5
+  save_every: 10
+  device: auto
+

@@ -1,0 +1,49 @@
+experiment:
+  name: hscd_smoke
+  output_dir: runs/hscd_smoke
+  seed: 7
+
+data:
+  dataset: synthetic
+  train_file: data/synthetic/train.npz
+  valid_file: data/synthetic/valid.npz
+  input_frames: 27
+  num_joints: 17
+  input_dim: 2
+  output_dim: 3
+  root_relative: true
+  metric_scale: 1000.0
+  metrics: [MPJPE, P-MPJPE]
+  num_workers: 0
+
+model:
+  name: HSCD-Smoke
+  feature_dim: 32
+  mie_layers: 2
+  attention_heads: 4
+  attention_head_dim: 8
+  ffn_ratio: 2.0
+  dropout: 0.0
+  decoder_channels: [32, 48]
+  decoder_blocks_per_scale: 1
+  temporal_scales: 2
+
+diffusion:
+  training_noise_levels: 20
+  beta_schedule: linear
+  beta_start: 0.0001
+  beta_end: 0.02
+  prediction_target: noise
+  reverse_steps: 4
+  clip_x0: null
+
+training:
+  optimizer: AdamW
+  epochs: 2
+  batch_size: 2
+  learning_rate: 0.0001
+  weight_decay: 0.0
+  lr_decay: 0.99
+  eval_every: 1
+  save_every: 1
+  device: cpu
