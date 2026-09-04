@@ -3,19 +3,23 @@
 This repository is a clean PyTorch reference implementation of **HSCD** for
 video-based 3D human pose estimation. It implements the method described in the
 manuscript:
+👋 Welcome to the official repository of **HSCD** for video-based 3D human pose estimation.
 
-- **MIE** encodes inter-frame motion and intra-frame skeletal structure with
-  factorized temporal/spatial attention and gated cross-dimension fusion.
-- **CCB** pools the cached MIE representation to every decoder resolution and
-  gates it against the current diffusion-state feature.
-- **PRD** predicts diffusion noise with a multi-scale temporal U-Net and uses
-  the CCB output at every reconstruction scale.
-- The forward process uses 1,000 linearly spaced noise levels. Inference uses a
-  respaced reverse chain with 50 transitions by default.
+HSCD performs progressive 3D pose reconstruction through hierarchical spatiotemporal conditioning. The framework mainly consists of:
 
-The code is independent of D3DP's MixSTE denoiser and multi-hypothesis
-aggregation. D3DP was used only as a reference for repository organization and
-the expected Human3.6M workflow.
+- 🧩 **MIE** — Motion-Structure Interaction Encoder
+- 🔗 **CCB** — Cross-Scale Conditioning Bridge
+- 🔄 **PRD** — Progressive Refinement Decoder
+
+The implementation is being progressively organized and released.
+
+---
+
+## 🚀 Installation
+
+```bash
+pip install -r requirements.txt
+
 
 ## What is and is not reproduced
 
