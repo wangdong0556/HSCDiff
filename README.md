@@ -10,7 +10,7 @@ HSCD performs progressive 3D pose reconstruction through hierarchical spatiotemp
 - 🧩 **MIE** — Motion-Structure Interaction Encoder
 - 🔗 **CCB** — Cross-Scale Conditioning Bridge
 - 🔄 **PRD** — Progressive Refinement Decoder
-
+MIE--CCB--PRD together!
 The implementation is being progressively organized and released.
 
 ---
